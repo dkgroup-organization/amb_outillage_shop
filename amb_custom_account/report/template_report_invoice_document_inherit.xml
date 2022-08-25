@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<odoo>
+<data>
+<template id="report_invoice_document_inherit"  inherit_id="account.report_invoice_document" >
+     <xpath expr="//p[@name='payment_communication']" position="after">
+         <p t-if="o.numero_commande" name="num_commande">
+                    <span >Numéro de bon de commande : </span>
+                        <span t-field="o.numero_commande"/>
+                    </p>
+
+     </xpath>
+    <xpath expr="//p[@name='payment_term']" position="after">
+        <p t-if="o.partner_id.x_affacturage" style="color:red">
+            Pour être libératoire, votre règlement doit être effectué directement à l'ordre de Crédit Agricole Leasing and Factoring 12 place des Etats-Unis CS 20001 92548 Montrouge Cedex qui le reçoit par subrogation dans le cadre d'un contrat d'affacturage.
+        </p>
+        <p t-if="o.invoice_date_due" >Date limite de règlement :  <b><span t-field="o.invoice_date_due"/></b></p>
+
+
+        <p t-if="o.partner_id.x_autolqtva" >Auto liquidation de la TVA</p>
+        <p t-if="not o.invoice_line_ids.tax_ids or o.partner_id.x_exo" >Exonération TVA, art. 262 ter-I du code général des impôts</p>
+
+
+    </xpath>
+</template>
+
+  </data>
+</odoo>

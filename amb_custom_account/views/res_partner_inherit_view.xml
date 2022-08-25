@@ -1,0 +1,39 @@
+<odoo>
+  <data>
+
+      <!-- Inherit List View Res Partner -->
+      <record id="view_partner_form_dk_group_inherit" model="ir.ui.view">
+        <field name="name">res partner form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+           <xpath expr="//group[@name='container_row_2']" position="after">
+                <group string="Facturation" name="contact_fac">
+                            <field name="customer_rank" groups="account.group_account_manager"/>
+             <field name="allow_invoicing" groups="account.group_account_manager"  widget="boolean_toggle"/>
+              <field name="bcd_exige" groups="account.group_account_manager"  widget="boolean_toggle"/>
+                 <field name="x_affacturage"  groups="account.group_account_manager"  widget="boolean_toggle"/>
+                 <field name="x_autolqtva" groups="account.group_account_manager"  widget="boolean_toggle"/>
+                 <field name="x_exo" groups="account.group_account_manager"  widget="boolean_toggle"/>
+                 <field name="montant_garantie" groups="account.group_account_manager"/>
+                 <field name="date_garantie" groups="account.group_account_manager"/>
+                    <field name="x_company_ids"  widget="many2many_tags" groups="account.group_account_manager"/>
+                </group>
+
+
+             </xpath>
+<!--
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="x_ice" groups="account.group_account_manager"/>
+            </xpath>
+-->
+        </field>
+      </record>
+
+
+
+
+
+
+  </data>
+</odoo>

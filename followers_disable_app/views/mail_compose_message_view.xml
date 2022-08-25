@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record model="ir.ui.view" id="email_compose_message_wizard_form_followers_disable_app">
+            <field name="name">mail.compose.message.form</field>
+            <field name="model">mail.compose.message</field>
+            <field name="inherit_id" ref="mail.email_compose_message_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[hasclass('o_mail_send')]" position="attributes">
+                    <attribute name="context">{'send_mail':True}</attribute>
+                </xpath>
+                <xpath expr="//button[hasclass('btn-primary')]" position="attributes">
+                    <attribute name="context">{'send_mail':True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="account_invoice_send_wizard_form_followers_disable_app" model="ir.ui.view">
+            <field name="name">account.invoice.send.form</field>
+            <field name="model">account.invoice.send</field>
+            <field name="inherit_id" ref="account.account_invoice_send_wizard_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[hasclass('o_mail_send')]" position="attributes">
+                    <attribute name="context">{'send_mail':True}</attribute>
+                </xpath>
+                 <xpath expr="//button[hasclass('send')]" position="attributes">
+                    <attribute name="context">{'send_mail':True}</attribute>
+                </xpath>
+                <xpath expr="//button[hasclass('print')]" position="attributes">
+                    <attribute name="context">{'send_mail':True}</attribute>
+                </xpath>
+            </field>
+        </record>
+
+</odoo>

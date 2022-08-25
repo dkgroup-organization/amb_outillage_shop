@@ -1,0 +1,25 @@
+<div style="margin:0px;padding: 0px;">
+    <p style="padding:0px;font-size: 13px;">
+        % set doc_name = 'devis' if object.state in ('draft', 'sent') else 'commande'
+        Bonjour
+        Cher client ${object.partner_id.name},
+        <br><br>
+        Votre
+        % if ctx.get('proforma'):
+            Facture Pro forma pour ${doc_name} <strong>${object.name}</strong>
+            % if object.origin:
+                (avec la référence: ${object.origin} )
+            % endif
+            d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}</strong> est disponible.
+        % else:
+            ${doc_name} <strong>${object.name}</strong>
+            % if object.origin:
+                (avec la référence: ${object.origin} )
+            % endif
+            d'un montant de <strong>${format_amount(object.amount_total, object.pricelist_id.currency_id)}</strong> est prêt pour révision.
+        % endif
+        <br><br>
+        N'hésitez pas à nous contacter si vous avez des questions..
+        <br>
+    </p>
+</div>
