@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ajouter_employes_project_id,amb_custom_project.ajouter_employes_project,model_ajouter_employes_project,,1,1,1,1
+access_delier_employes_projet_id,amb_custom_project.delier_employes_projet,model_delier_employes_projet,,1,1,1,1

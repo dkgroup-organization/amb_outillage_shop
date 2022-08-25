@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright (C) 2015 DevIntelle Consulting Service Pvt.Ltd (<http://www.devintellecs.com>).
+
+For Module Support : devintelle@gmail.com  or Skype : devintelle
+ -->
+<odoo>
+    <record id="view_dev_res_config_sale_default_email_templte_form" model="ir.ui.view">
+        <field name="name">view.dev.res.config.sale.default.email.template.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='sale_management']//h2[1]" position="before">
+                <h2>Default Email Template</h2>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <group>
+                        <field name="sale_quotation_template"
+                               readonly="0"
+                               domain="[('model_id.model','=','sale.order')]"/>
+                        <field name="sale_order_template"
+                               readonly="0"
+                               domain="[('model_id.model','=','sale.order')]"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_dev_res_config_purchase_default_email_templte_form" model="ir.ui.view">
+        <field name="name">view.dev.res.config.pur.default.email.template.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="purchase.res_config_settings_view_form_purchase"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='purchase']//h2[2]" position="before">
+                <h2>Default Email Template</h2>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <group>
+                        <field name="pur_quotation_template"
+                               style="width:80%%"
+                               readonly="0"
+                               domain="[('model_id.model','=','purchase.order')]"/>
+                        <field name="pur_order_template"
+                               style="width:80%%"
+                               readonly="0"
+                               domain="[('model_id.model','=','purchase.order')]"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_dev_res_config_invoice_default_email_templte_form" model="ir.ui.view">
+        <field name="name">view.dev.res.config.inv.default.email.template.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="50"/>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@data-key='account']//h2[2]" position="before">
+                <h2>Default Email Template</h2>
+                <div class="col-12 col-lg-6 o_setting_box">
+                    <group>
+                        <field name="invoice_template"
+                               readonly="0"
+                               style="width:80%%"
+                               domain="[('model_id.model','=','account.move')]"/>
+                    </group>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

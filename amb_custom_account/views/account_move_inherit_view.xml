@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+
+    <!-- Inherit Form View Account Move -->
+    <record id="view_move_form_inherit" model="ir.ui.view">
+        <field name="name">account.move.form</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+          <!--
+          <xpath expr="//sheet" position="after">
+            <div name="button_box" class="oe_button_box" style="text-align:left;margin-left: initial;">
+              <h2 bg_color="bg-info"><span class="badge rounded-pill bg-info"><field name="state2"/></span></h2>
+            </div>
+          </xpath> 
+          -->
+          <xpath expr="//field[@name='id']" position="before">
+                   <field name="state2" invisible="1" />
+                 <!--<widget  bg_color="bg-info" name="web_ribbon" title="Cédé" attrs="{'invisible': ['|', ('state2', '!=', 'cede'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}"/>
+-->
+<div class="ribbon o_widget" style="top:0;width: 120px;" attrs="{'invisible': ['|', ('state2', '!=', 'cede'), ('move_type', 'not in', ('out_invoice', 'out_refund', 'in_invoice', 'in_refund', 'out_receipt', 'in_receipt'))]}">
+            <span class="bg-info">
+                <field name="state2" class="text-left"/>
+            </span>
+        </div>
+
+              </xpath>
+            <xpath expr="//header[last()]" position="inside">
+
+                        <button name="%(action_transientmodel_wizard_cede)d" string="Enregistrer la cession" type="action" class="btn-primary"  attrs="{'invisible': ['|',('state2','in',('cede')),('state','in',('draft','cancel'))]}"/>
+
+            </xpath>
+            <xpath  expr="//field[@name='invoice_origin']" position="after">
+                <field name="date_cession" attrs="{'invisible':[('state2','!=','cede')]}" />
+            </xpath>
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="required_numero_commande" invisible="1"/>
+                <field name="numero_commande" attrs="{'required': [('required_numero_commande', '!=', False)]}" />
+
+            </xpath>
+
+        </field>
+    </record>
+
+      <!-- Inherit List View Account Move -->
+      <record id="view_move_list_inherit" model="ir.ui.view">
+        <field name="name">account.move.list</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+             <xpath expr="//field[@name='state']" position="after">
+             <field name="state2" widget="badge" decoration-info="state2 == 'cede'" optional="show"/>
+
+             </xpath>
+        </field>
+      </record>
+
+
+
+
+
+  </data>
+</odoo>

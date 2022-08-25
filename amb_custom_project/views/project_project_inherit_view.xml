@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherit view form project.project-->
+        <record model="ir.ui.view" id="emppp_view_add_ppro">
+            <field name="name">emp.view.addd.proj</field>
+            <field name="model">project.project</field>
+            <field name="inherit_id" ref="project.edit_project"/>
+            <field name="arch" type="xml">
+                 <xpath  expr="//field[@name='description']" position="after">
+                    <field name="pieces_joint" widget="many2many_binary"/>
+                </xpath>
+            	 <xpath expr="//notebook/page[@name='description_page']" position="after">
+
+            	 	<page string="Employés">
+
+               <button name="%(action_transientmodel_ajouter_emplo_projet_wizard)d" string="Ajouter Employés" type="action" class="btn-primary"/>
+                  <group string = "Employés" >
+                       <field name="equipe" readonly="1" nolabel="1"/>
+
+                     </group>
+                <button name="%(action_transientmodel_delier_empp_projet_wizard)d" string="Supprimer Employés" type="action" class="btn-danger"/>
+                     </page>
+	    </xpath>
+                <xpath  expr="//field[@name='partner_id']" position="before">
+
+                    <label for="street_project">
+
+                                <b>Adresse Chantier</b>
+                            </label>
+                            <div class="o_address_format" >
+                                <field name="street" placeholder="Street..." class="o_address_street" id="street_project"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street" />
+                                <field name="city" placeholder="City" class="o_address_city" />
+                                <field name="state_id" class="o_address_state" placeholder="State" context="{'country_id': country_id, 'zip': zip}"/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip" />
+                                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}" />
+                            </div>
+                </xpath>
+                <xpath expr="//field[@name='partner_id']" position="after">
+<field name="x_contact" domain ="[('parent_id','=',partner_id)]" options="{'no_create': True}"/>
+ <field name="reference_chantier" string="Reference interne"/>
+          <!--<field name="devis" readonly="1" string="Devis liés(éditer dans l'onglet Devis)" widget="many2many_tags"/>-->
+          <field name="date_debut" string="Date de Démarrage"/>
+          <field name="date_fin" string="Date de fin"/>
+
+                </xpath>
+                <xpath expr="//form//header" position="inside">
+                <button string="Production" type="object" name="prod" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('done','cancel','fact','prod'))]}" groups="project.group_project_manager" />
+        <button string="Facturation" type="object" name="fact" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('done','cancel','draft','fact'))]}" groups="project.group_project_manager" />
+        <button string="Marqué comme Terminé" type="object" name="done" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('cancel','done'))]}" groups="project.group_project_manager" />
+        <button string="Remeetre en projet valide" type="object" name="draft" attrs="{'invisible': [('state', 'in', ('fact','prod','draft'))]}" groups="project.group_project_manager" />
+        <button string="Annuler" type="object" name="cancel" attrs="{'invisible': [('state', 'in', ('cancel','done'))]}" groups="project.group_project_manager" />
+                    <field name="state" widget="statusbar" clickable="True" groups="project.group_project_manager" />
+
+        </xpath>
+
+
+            </field>
+        </record>
+    <!-- end inherit view form project.project-->
+
+
+
+</odoo>

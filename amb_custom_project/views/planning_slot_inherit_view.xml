@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- inherit view form project.project-->
+    <record model="ir.ui.view" id="planning_slot_form_view_inherit">
+        <field name="name">planning.slot.form.inherit</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form"/>
+        <field name="arch" type="xml">
+           <!-- <xpath expr="//sheet/field[1]" position="before">
+                <field name="task_id" invisible="1"/>
+                <field name="total_hours_spent" invisible="1"/>
+                <field name="timesheet_timer_start" invisible="1"/>
+                <field name="timesheet_timer_pause" invisible="1"/>
+                <group attrs="{'invisible': [('task_id', '=', False)]}">
+                    <div>
+                        <button class="btn-primary" name="action_timer_start" type="object" string="Démarrer"
+                                attrs="{'invisible': ['|', ('total_hours_spent', '!=', 0), ('timesheet_timer_start', '!=', False)]}"/>
+                        <button class="btn-primary" name="action_timer_start" type="object" string="Démarrer"
+                                attrs="{'invisible': [ '|', ('total_hours_spent', '=', 0), ('timesheet_timer_start', '!=', False)]}"/>
+                        <button class="btn-primary btn-danger o_fsm_stop" name="action_timer_stop" type="object"
+                                string="Arrêter" attrs="{'invisible': [('timesheet_timer_start', '=', False)]}"/>
+                        <button class="btn-primary" name="action_timer_pause" type="object" string="Mettre en attente"
+                                attrs="{'invisible': ['|', ('timesheet_timer_pause', '!=', False), ('timesheet_timer_start', '=', False)]}"/>
+                        <button class="btn-primary btn-info" name="action_timer_resume" type="object" string="Reprendre"
+                                attrs="{'invisible': ['|', ('timesheet_timer_pause', '=', False), ('timesheet_timer_start', '=', False)]}"/>
+                        <field name="timesheet_timer_start" widget="timer_timer"
+                               class="text-danger ml-auto h2 ml-4 font-weight-bold" nolabel="1"/>
+                        <field name="timesheet_timer_start" widget="timer_timer"
+                               class="text-danger ml-auto h2 ml-4 font-weight-bold"/>
+
+                    </div>
+                </group>
+            </xpath>-->
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="descriptiontask" string="Description de la tâche" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

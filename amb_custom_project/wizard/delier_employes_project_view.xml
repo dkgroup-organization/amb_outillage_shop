@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+ <!-- FORM VIEW  -->
+
+  <record id="view_delier_empp_wizard_form" model="ir.ui.view">
+            <field name="name">transient.form.emp</field>
+            <field name="model">delier.employes.projet</field>
+            <field name="arch" type="xml">
+                <form string="Supprimer Employé">
+                    <p class="oe_grey"> </p>
+                    <group>
+                        <group>
+                            <field name="emp" />
+
+                        </group>
+
+                    </group>
+
+
+
+                    <footer>
+                        <button name="action_delier_emp" string="Supprimer" type="object" class="btn-primary"/>
+                        <button string="Cancel" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+<!-- ACTION     -->
+
+        <record id="action_transientmodel_delier_empp_projet_wizard" model="ir.actions.act_window">
+            <field name="name">Supprimer un Employé</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">delier.employes.projet</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+</odoo>
